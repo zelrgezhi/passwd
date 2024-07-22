@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Node</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('R.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.5); /* 降低显示框的透明度 */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid rgba(0, 0, 0, 0.2); /* 添加边框以提高可见性 */
+            border-radius: 4px;
+            background: rgba(0, 123, 255, 0.3); /* 使按钮透明 */
+            color: #007bff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: rgba(0, 123, 255, 0.5); /* 调整悬停时按钮的透明度 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>选择节点</h1>
+        <select id="nodeSelect">
+            <option value="" disabled selected>请选择一个节点</option>
+            <option value="https://node-cloudflare.sub.gs/jsproxy">Cloudflare 演示</option>
+            <option value="https://node-hk01.sub.gs/jsproxy">香港 演示</option>
+            <option value="https://node-tokyo.sub.gs/jsproxy">东京 演示</option>
+            <option value="https://node-us.sub.gs/jsproxy">美国 演示</option>
+        </select>
+        <button id="nodeSelectBtn">确定</button>
+    </div>
+
+    <script>
+        const nodeSelect = document.getElementById('nodeSelect');
+        const nodeSelectBtn = document.getElementById('nodeSelectBtn');
+
+        nodeSelectBtn.addEventListener('click', () => {
+            const selectedNode = nodeSelect.value;
+            if (selectedNode) {
+                window.location.href = selectedNode;
+            }
+        });
+
+        window.onload = () => {
+            if (localStorage.getItem('isPasswordVerified') !== 'true') {
+                window.location.href = 'index.html';
+            }
+        };
+    </script>
+</body>
+</html>

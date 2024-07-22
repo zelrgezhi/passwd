@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('R.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.5); /* 降低显示框的透明度 */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #333;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid rgba(0, 0, 0, 0.2); /* 添加边框以提高可见性 */
+            border-radius: 4px;
+            background: rgba(40, 167, 69, 0.3); /* 使按钮透明 */
+            color: #FFFFFF;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: rgba(40, 167, 69, 0.5); /* 调整悬停时按钮的透明度 */
+        }
+        #errorMsg {
+            color: red;
+            margin-top: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>请输入密码</h2>
+        <input id="passwordInput" type="password" placeholder="Password">
+        <button id="passwordBtn">提交</button>
+        <p id="errorMsg" class="hidden">密码错误，请重试。</p>
+    </div>
+
+    <script>
+        const correctPassword = 'zju@zhejiang'; // 修改密码在此处更改
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordBtn = document.getElementById('passwordBtn');
+        const errorMsg = document.getElementById('errorMsg');
+
+        passwordBtn.addEventListener('click', () => {
+            const password = passwordInput.value.trim();
+            if (password === correctPassword) {
+                localStorage.setItem('isPasswordVerified', 'true');
+                window.location.href = 'node-selection.html';
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
